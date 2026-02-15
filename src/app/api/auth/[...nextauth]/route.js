@@ -39,10 +39,11 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
 }
 
 export const authOptions = {
-  providers,
+  secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/login",
   },
+  providers,
   callbacks: {
   async signIn({ user, account, profile, email, credentials }) {
     return true

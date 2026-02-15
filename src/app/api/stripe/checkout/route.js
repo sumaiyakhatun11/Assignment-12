@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServiceById } from "@/data/services";
 import { dbConnect } from "@/lib/dbConnect";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 
 export const runtime = "nodejs";
 
@@ -61,6 +61,7 @@ export async function POST(req) {
 
   const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
 
+  const stripe = getStripe();
   const checkoutSession = await stripe.checkout.sessions.create({
     mode: "payment",
     customer_email: session.user.email,

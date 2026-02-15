@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { ObjectId } from "mongodb";
 import { dbConnect } from "@/lib/dbConnect";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import { getServiceById } from "@/data/services";
 import { createBookingFromPayment } from "@/actions/server/bookings";
 
@@ -15,6 +15,7 @@ export async function POST(req) {
     return new NextResponse("Webhook signature missing", { status: 400 });
   }
 
+  const stripe = getStripe();
   let event;
   try {
     event = stripe.webhooks.constructEvent(
