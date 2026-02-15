@@ -1,14 +1,31 @@
-import { Poppins } from "next/font/google";
+import { Manrope, Playfair_Display } from "next/font/google";
 import "./globals.css";
-const poppins = Poppins({
-  weight: ["200", "400", "500", "600", "700"],
+import NextAuthProvider from "./provider/NextAuthProvider";
+import Navbar from "@/components/Navbar";
+
+const manrope = Manrope({
+  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
+const playfair = Playfair_Display({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-heading",
 });
 
 const RootLayout = ({ children }) => {
   return (
-    <html className={`${poppins.className}`}>
-      <body className="">{children}</body>
-    </html>
+    <NextAuthProvider>
+      <html className={`${manrope.variable} ${playfair.variable}`}>
+        <body className="app-shell">
+          <Navbar />
+          <main className="page-container">{children}</main>
+        </body>
+      </html>
+    </NextAuthProvider>
   );
 };
+
 export default RootLayout;
