@@ -1,0 +1,72 @@
+[build]
+  command = "npm run build"
+  functions = "netlify/functions"
+  publish = ".next"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/admin"
+  to = "/admin"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/my-bookings"
+  to = "/my-bookings"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/login"
+  to = "/login"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/register"
+  to = "/register"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/service/:id"
+  to = "/service/:id"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/booking/:id"
+  to = "/booking/:id"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/payment-success"
+  to = "/payment-success"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/server:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 404
+
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
