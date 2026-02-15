@@ -61,33 +61,40 @@ export async function POST(req) {
 
   const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
 
-  const stripe = getStripe();
-  const checkoutSession = await stripe.checkout.sessions.create({
-    mode: "payment",
-    customer_email: session.user.email,
-    payment_method_types: ["card"],
-    line_items: [
-      {
-        quantity: 1,
-        price_data: {
-          currency: "bdt",
-          unit_amount: totalCost * 100,
-          product_data: {
-            name: `${service.name} care`,
-            description: `${durationValue} ${durationUnit}(s) of care service`,
+  try {
+    const stripe = getStripe();
+    const checkoutSession = await stripe.checkout.sessions.create({
+      mode: "payment",
+      customer_email: session.user.email,
+      payment_method_types: ["card"],
+      line_items: [
+        {
+          quantity: 1,
+          price_data: {
+            currency: "bdt",
+            unit_amount: totalCost * 100,
+            product_data: {
+              name: `${service.name} care`,
+              description: `${durationValue} ${durationUnit}(s) of care service`,
+            },
           },
         },
+      ],
+      success_url: `${baseUrl}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/booking/${service.id}?cancelled=true`,
+      metadata: {
+        draftId: draftResult.insertedId.toString(),
+        serviceId: service.id,
+        durationUnit,
+        durationValue: durationValue.toString(),
       },
-    ],
-    success_url: `${baseUrl}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${baseUrl}/booking/${service.id}?cancelled=true`,
-    metadata: {
-      draftId: draftResult.insertedId.toString(),
-      serviceId: service.id,
-      durationUnit,
-      durationValue: durationValue.toString(),
-    },
-  });
+    });
 
-  return NextResponse.json({ url: checkoutSession.url });
+    return NextResponse.json({ url: checkoutSession.url });
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Stripe checkout failed. Check STRIPE_SECRET_KEY." },
+      { status: 500 }
+    );
+  }
 }

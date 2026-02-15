@@ -38,7 +38,6 @@ const RegisterForm = ({ redirectTo }) => {
       contactNo: form.contactNo.value,
       password,
       image: form.image.value,
-      bloodgroup: form.bloodgroup.value,
     };
 
     startTransition(async () => {
@@ -113,31 +112,14 @@ const RegisterForm = ({ redirectTo }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="flex flex-col space-y-1">
-          <label className="text-sm font-semibold">Blood Group</label>
-          <select name="bloodgroup" required className={inputClass}>
-            <option value="">Select</option>
-            <option value="A+">A+</option>
-            <option value="A-">A-</option>
-            <option value="B+">B+</option>
-            <option value="B-">B-</option>
-            <option value="O+">O+</option>
-            <option value="O-">O-</option>
-            <option value="AB+">AB+</option>
-            <option value="AB-">AB-</option>
-          </select>
-        </div>
-
-        <div className="flex flex-col space-y-1">
-          <label className="text-sm font-semibold">Profile Image URL</label>
-          <input
-            type="url"
-            name="image"
-            placeholder="https://example.com/image.jpg"
-            className={inputClass}
-          />
-        </div>
+      <div className="flex flex-col space-y-1">
+        <label className="text-sm font-semibold">Profile Image URL</label>
+        <input
+          type="url"
+          name="image"
+          placeholder="https://example.com/image.jpg"
+          className={inputClass}
+        />
       </div>
 
       {error ? <p className="text-sm text-red-600">{error}</p> : null}

@@ -5,7 +5,11 @@ import { getServiceById } from "@/data/services";
 import BookingForm from "./BookingForm";
 
 export default async function BookingPage({ params }) {
-  const service = getServiceById(params.service_id);
+  const resolvedParams = await Promise.resolve(params);
+  const serviceId = Array.isArray(resolvedParams.service_id)
+    ? resolvedParams.service_id[0]
+    : resolvedParams.service_id;
+  const service = getServiceById(serviceId);
   if (!service) notFound();
 
   const session = await getServerSession(authOptions);

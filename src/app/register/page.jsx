@@ -2,8 +2,9 @@ import RegisterForm from "@/components/RegisterForm";
 import Link from "next/link";
 import { SiAuthelia } from "react-icons/si";
 
-const RegisterPage = ({ searchParams }) => {
-  const redirectTo = searchParams?.redirect || "/";
+const RegisterPage = async ({ searchParams }) => {
+  const resolvedParams = await Promise.resolve(searchParams);
+  const redirectTo = resolvedParams?.redirect || "/";
 
   return (
     <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-10 py-12">

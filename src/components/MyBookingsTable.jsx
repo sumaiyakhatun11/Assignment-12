@@ -7,6 +7,7 @@ import { cancelBooking } from "@/actions/server/bookings";
 
 const statusStyles = {
   Pending: "bg-amber-100 text-amber-700",
+  PendingPayment: "bg-orange-100 text-orange-700",
   Confirmed: "bg-emerald-100 text-emerald-700",
   Completed: "bg-slate-200 text-slate-700",
   Cancelled: "bg-rose-100 text-rose-700",
@@ -55,13 +56,17 @@ const MyBookingsTable = ({ bookings }) => {
             </span>
           </div>
           <div className="flex flex-col gap-3">
-            <Link className="btn btn-outline" href={`/service/${booking.serviceId}`}>
+            <Link className="btn btn-outline" href={`/my-bookings/${booking.id}`}>
               View details
             </Link>
             <button
               className="btn btn-primary"
               type="button"
-              disabled={isPending || booking.status === "Cancelled" || booking.status === "Completed"}
+              disabled={
+                isPending ||
+                booking.status === "Cancelled" ||
+                booking.status === "Completed"
+              }
               onClick={() => handleCancel(booking.id)}
             >
               Cancel booking

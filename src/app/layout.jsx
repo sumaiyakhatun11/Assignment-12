@@ -2,6 +2,7 @@ import { Manrope, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import NextAuthProvider from "./provider/NextAuthProvider";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const manrope = Manrope({
   weight: ["300", "400", "500", "600", "700"],
@@ -22,6 +23,7 @@ const RootLayout = ({ children }) => {
         <body className="app-shell">
           <Navbar />
           <main className="page-container">{children}</main>
+          <Footer />
         </body>
       </html>
     </NextAuthProvider>

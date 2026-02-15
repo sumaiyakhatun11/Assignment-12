@@ -48,10 +48,14 @@ const BookingForm = ({ service }) => {
         }),
       });
 
-      const result = await response.json();
+      let result = null;
+      const contentType = response.headers.get("content-type") || "";
+      if (contentType.includes("application/json")) {
+        result = await response.json();
+      }
 
       if (!response.ok || !result?.url) {
-        setError(result?.message || "Payment session failed");
+        setError(result?.message || "Payment session failed. Check Stripe env vars.");
         return;
       }
 

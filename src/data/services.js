@@ -43,4 +43,9 @@ export const services = [
   },
 ];
 
-export const getServiceById = (id) => services.find((service) => service.id === id);
+const normalizeId = (id) => (id ? decodeURIComponent(String(id)).toLowerCase() : "");
+
+export const getServiceById = (id) => {
+  const normalized = normalizeId(id);
+  return services.find((service) => service.id.toLowerCase() === normalized);
+};

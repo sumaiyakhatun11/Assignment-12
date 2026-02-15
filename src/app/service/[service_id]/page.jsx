@@ -5,7 +5,11 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServiceById } from "@/data/services";
 
 export async function generateMetadata({ params }) {
-  const service = getServiceById(params.service_id);
+  const resolvedParams = await Promise.resolve(params);
+  const serviceId = Array.isArray(resolvedParams.service_id)
+    ? resolvedParams.service_id[0]
+    : resolvedParams.service_id;
+  const service = getServiceById(serviceId);
   if (!service) return { title: "Service not found" };
 
   return {
@@ -15,7 +19,11 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function ServiceDetailPage({ params }) {
-  const service = getServiceById(params.service_id);
+  const resolvedParams = await Promise.resolve(params);
+  const serviceId = Array.isArray(resolvedParams.service_id)
+    ? resolvedParams.service_id[0]
+    : resolvedParams.service_id;
+  const service = getServiceById(serviceId);
   if (!service) notFound();
 
   const session = await getServerSession(authOptions);

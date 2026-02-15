@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -17,13 +18,27 @@ const Navbar = () => {
     return (
         <header className="sticky top-0 z-20 backdrop-blur-md bg-white/70 border-b border-black/5">
             <div className="mx-auto max-w-6xl flex items-center justify-between px-5 py-4">
-                <Link href="/" className="text-xl font-bold tracking-tight">
-                    Care.xyz
+                <Link href="/" className="flex items-center gap-2 text-xl font-bold tracking-tight">
+                    <span className="h-10 w-10 rounded-xl bg-white/80 border border-black/5 flex items-center justify-center overflow-hidden">
+                        <Image src="/logo.png.png" alt="FabricPulse logo" width={40} height={40} />
+                    </span>
+                    <span>Care.IO</span>
                 </Link>
                 <nav className="flex items-center gap-2">
                     <Link href="/" className={linkClass("/")}>Home</Link>
+                    <Link href="/all-products" className={linkClass("/all-products")}>All Products</Link>
+                    <Link href="/about-us" className={linkClass("/about-us")}>About Us</Link>
                     <Link href="/#services" className={linkClass("/")}>Services</Link>
                     <Link href="/my-bookings" className={linkClass("/my-bookings")}>My Bookings</Link>
+                    <Link href="/profile" className="flex items-center gap-2 rounded-full px-3 py-2 hover:bg-white/60">
+                        <span className="h-8 w-8 rounded-full overflow-hidden bg-white/80 border border-black/5 flex items-center justify-center">
+                            {session?.data?.user?.image ? (
+                                <Image src={session.data.user.image} alt="Profile" width={32} height={32} />
+                            ) : (
+                                <span className="text-xs font-semibold text-black/60">U</span>
+                            )}
+                        </span>
+                    </Link>
                     {session?.data?.role === "admin" ? (
                         <Link href="/admin" className={linkClass("/admin")}>Admin</Link>
                     ) : null}

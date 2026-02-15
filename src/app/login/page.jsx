@@ -4,8 +4,9 @@ export const metadata = {
   title: "Login | Care.xyz",
 };
 
-const LoginPage = ({ searchParams }) => {
-  const redirectTo = searchParams?.redirect || "/my-bookings";
+const LoginPage = async ({ searchParams }) => {
+  const resolvedParams = await Promise.resolve(searchParams);
+  const redirectTo = resolvedParams?.redirect || "/my-bookings";
 
   return (
     <div className="mx-auto max-w-5xl py-12 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10">

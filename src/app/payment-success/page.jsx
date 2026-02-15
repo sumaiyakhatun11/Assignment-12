@@ -4,8 +4,9 @@ export const metadata = {
   title: "Payment Success | Care.xyz",
 };
 
-const PaymentSuccessPage = ({ searchParams }) => {
-  const sessionId = searchParams?.session_id;
+const PaymentSuccessPage = async ({ searchParams }) => {
+  const resolvedParams = await Promise.resolve(searchParams);
+  const sessionId = resolvedParams?.session_id;
 
   return (
     <div className="mx-auto max-w-4xl py-20 text-center">
