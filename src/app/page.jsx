@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="mx-auto max-w-6xl">
       <section className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8 py-16 items-center">
-        <div className="space-y-6">
+        <div className="space-y-6 reveal">
           <p className="text-sm uppercase tracking-[0.3em] text-black/50">
             Care that feels like family
           </p>
@@ -35,7 +35,7 @@ export default function Home() {
             <span>Transparent pricing</span>
           </div>
         </div>
-        <div className="card p-8 space-y-6">
+        <div className="card p-8 space-y-6 reveal reveal-delay-1 float-soft">
           <div className="flex items-center justify-between">
             <span className="text-xs uppercase tracking-[0.2em] text-black/50">Care snapshot</span>
             <span className="text-sm font-semibold text-amber-600">Live availability</span>
@@ -57,19 +57,19 @@ export default function Home() {
       </section>
 
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6 pb-16">
-        <div className="card p-6">
+        <div className="card p-6 reveal">
           <h3 className="section-title text-xl font-semibold">Verified & trained</h3>
           <p className="text-sm text-black/60 mt-2">
             Every caregiver passes background checks and skill screenings before matching.
           </p>
         </div>
-        <div className="card p-6">
+        <div className="card p-6 reveal reveal-delay-1">
           <h3 className="section-title text-xl font-semibold">Flexible bookings</h3>
           <p className="text-sm text-black/60 mt-2">
             Choose hour-by-hour support or multi-day coverage for ongoing care needs.
           </p>
         </div>
-        <div className="card p-6">
+        <div className="card p-6 reveal reveal-delay-2">
           <h3 className="section-title text-xl font-semibold">Transparent pricing</h3>
           <p className="text-sm text-black/60 mt-2">
             See total cost instantly based on duration and service level.
@@ -89,7 +89,7 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {services.map((service) => (
-            <div key={service.id} className="card p-6 flex flex-col gap-4">
+            <div key={service.id} className="card p-6 flex flex-col gap-4 reveal">
               <div>
                 <h3 className="section-title text-2xl font-semibold">{service.name}</h3>
                 <p className="text-sm text-black/60">{service.coverage}</p>
@@ -112,7 +112,7 @@ export default function Home() {
       </section>
 
       <section className="py-14 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="card p-8">
+        <div className="card p-8 reveal">
           <p className="text-sm uppercase tracking-[0.3em] text-black/50">Our mission</p>
           <h2 className="section-title text-3xl font-semibold mt-3">
             Making caregiving easy, safe, and accessible.
@@ -131,7 +131,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="card p-8">
+        <div className="card p-8 reveal reveal-delay-1">
           <p className="text-sm uppercase tracking-[0.3em] text-black/50">Testimonials</p>
           <div className="space-y-5 mt-5">
             <div className="glass rounded-2xl p-4">
@@ -152,7 +152,7 @@ export default function Home() {
 
       <section className="py-14">
         <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8">
-          <div className="card p-8">
+          <div className="card p-8 reveal">
             <p className="text-sm uppercase tracking-[0.3em] text-black/50">How it works</p>
             <h2 className="section-title text-3xl font-semibold mt-3">Book care in three simple steps</h2>
             <div className="mt-6 space-y-4 text-sm text-black/70">
@@ -170,7 +170,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="card p-8">
+          <div className="card p-8 reveal reveal-delay-1">
             <p className="text-sm uppercase tracking-[0.3em] text-black/50">Care plans</p>
             <h2 className="section-title text-3xl font-semibold mt-3">Flexible plans for every family</h2>
             <div className="mt-6 grid grid-cols-1 gap-4 text-sm">
@@ -193,21 +193,21 @@ export default function Home() {
 
       <section className="py-14">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="card p-6">
+          <div className="card p-6 reveal">
             <p className="text-sm uppercase tracking-[0.3em] text-black/50">Safety first</p>
             <h3 className="section-title text-2xl font-semibold mt-2">Trusted caregivers</h3>
             <p className="text-sm text-black/60 mt-3">
               Every caregiver is background checked and verified before they join.
             </p>
           </div>
-          <div className="card p-6">
+          <div className="card p-6 reveal reveal-delay-1">
             <p className="text-sm uppercase tracking-[0.3em] text-black/50">Updates</p>
             <h3 className="section-title text-2xl font-semibold mt-2">Real-time tracking</h3>
             <p className="text-sm text-black/60 mt-3">
               Receive check-ins and care notes right inside your dashboard.
             </p>
           </div>
-          <div className="card p-6">
+          <div className="card p-6 reveal reveal-delay-2">
             <p className="text-sm uppercase tracking-[0.3em] text-black/50">Support</p>
             <h3 className="section-title text-2xl font-semibold mt-2">Care team on call</h3>
             <p className="text-sm text-black/60 mt-3">
@@ -218,7 +218,7 @@ export default function Home() {
       </section>
 
       <section className="py-14">
-        <div className="card p-8 flex flex-col lg:flex-row items-center justify-between gap-6">
+        <div className="card p-8 flex flex-col lg:flex-row items-center justify-between gap-6 reveal">
           <div>
             <p className="text-sm uppercase tracking-[0.3em] text-black/50">Get started</p>
             <h2 className="section-title text-3xl font-semibold mt-3">Ready to book trusted care?</h2>
@@ -238,7 +238,7 @@ export default function Home() {
       </section>
 
       <section className="py-14">
-        <div className="card p-8">
+        <div className="card p-8 reveal">
           <p className="text-sm uppercase tracking-[0.3em] text-black/50">FAQ</p>
           <h2 className="section-title text-3xl font-semibold mt-3">Frequently asked questions</h2>
           <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
