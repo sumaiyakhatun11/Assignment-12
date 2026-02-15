@@ -11,7 +11,7 @@ const Navbar = () => {
     const session = useSession();
 
     const linkClass = (href) =>
-        `px-3 py-2 rounded-full text-sm font-semibold transition hover:bg-white/60 ${
+        `group relative px-3 py-2 rounded-full text-sm font-semibold transition hover:bg-white/60 ${
             pathname === href ? "bg-white/80" : ""}
         `;
 
@@ -25,11 +25,11 @@ const Navbar = () => {
                     <span>Care.IO</span>
                 </Link>
                 <nav className="flex items-center gap-2">
-                    <Link href="/" className={linkClass("/")}>Home</Link>
-                    <Link href="/all-products" className={linkClass("/all-products")}>All Products</Link>
-                    <Link href="/about-us" className={linkClass("/about-us")}>About Us</Link>
-                    <Link href="/#services" className={linkClass("/")}>Services</Link>
-                    <Link href="/my-bookings" className={linkClass("/my-bookings")}>My Bookings</Link>
+                    <Link href="/" className={linkClass("/")}>Home<span className="absolute left-3 right-3 bottom-1 h-0.5 bg-orange-300 scale-x-0 transition-transform group-hover:scale-x-100" /></Link>
+                    <Link href="/all-products" className={linkClass("/all-products")}>All Products<span className="absolute left-3 right-3 bottom-1 h-0.5 bg-orange-300 scale-x-0 transition-transform group-hover:scale-x-100" /></Link>
+                    <Link href="/about-us" className={linkClass("/about-us")}>About Us<span className="absolute left-3 right-3 bottom-1 h-0.5 bg-orange-300 scale-x-0 transition-transform group-hover:scale-x-100" /></Link>
+                    <Link href="/#services" className={linkClass("/")}>Services<span className="absolute left-3 right-3 bottom-1 h-0.5 bg-orange-300 scale-x-0 transition-transform group-hover:scale-x-100" /></Link>
+                    <Link href="/my-bookings" className={linkClass("/my-bookings")}>My Bookings<span className="absolute left-3 right-3 bottom-1 h-0.5 bg-orange-300 scale-x-0 transition-transform group-hover:scale-x-100" /></Link>
                     <Link href="/profile" className="flex items-center gap-2 rounded-full px-3 py-2 hover:bg-white/60">
                         <span className="h-8 w-8 rounded-full overflow-hidden bg-white/80 border border-black/5 flex items-center justify-center">
                             {session?.data?.user?.image ? (
